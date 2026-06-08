@@ -1,0 +1,102 @@
+import naves.*
+
+describe "Test NAVES" {
+
+    const nave1 = new Nave(velocidad=100,combustible=100,direccion=10)//ir Hacia el sol
+    const naveBaliza=  new NavesBaliza(velocidad=1000,combustible=2000,direccion= -10, baliza= "rojo") //escaparDelSol()
+
+    method initialize() {
+        nave1.acelerar(50)
+        nave1.desacelerar(20)
+        nave1.cargarCombustible(200)
+        nave1.descargarCombustible(50)
+        nave1.cargarCombustible(30000)
+        nave1.acelerar(5000)
+        nave1.descargarCombustible(30000)
+
+        naveBaliza.baliza()
+        naveBaliza.cambiarColorDeBaliza("rojo")
+        naveBaliza.baliza()
+        naveBaliza.prepararViaje()
+
+
+        
+    
+    }
+    test "velocidad" {
+    assert.equals(100, nave1.velocidad())
+    }
+    test "combustible" {
+    assert.equals(100, nave1.combustible())
+    
+    }
+    test "direcion" {
+    assert.equals(10, nave1.irHaciaElSol())
+    
+    }
+    test "acelerar: 100 + 50 = 150" {
+    assert.equals(150, nave1.velocidad())
+    }
+    test "desacelerar: 150 -20 = 130" {
+    assert.equals(130, nave1.velocidad())
+    }
+    test "escapar del sol" {
+    assert.equals(-10, nave1.escaparDelSol())
+    }
+    test "ponerseParaleloAlSol()" {
+    assert.equals(0, nave1.ponerseParaleloAlSol())
+    }
+    test "acercarseUnPocoAlSol()" {
+    assert.equals(10, nave1.acercarseUnPocoAlSol())
+    }
+    test " alejarseUnPocoDelSol()" {
+    assert.equals(9, nave1. alejarseUnPocoDelSol())
+    }
+    test "cargarCombustible(200)" {
+    assert.equals(300, nave1.combustible())
+    }
+    test "descargarCombustible(50)" {
+    assert.equals(250, nave1.combustible())
+    }
+    test "prepararViaje() combustible" {
+    assert.equals(30250, nave1.combustible())
+    }
+    test "prepararViaje() velocidad" {
+    assert.equals(5130, nave1.velocidad())
+    }
+    test "estaTranquila()" {
+    assert.that(nave1.estaTranquila())
+    }
+    test "not estaTranquila()" {
+    assert.notThat(nave1.estaTranquila())
+    }
+//NAVE BALIZA
+
+    test "mostrarBaliza()rojo"{
+    assert.equals("rojo", naveBaliza.baliza())
+    }
+    test "coloresDeBalizaCambiados = []" {
+    assert.equals(["rojo"], naveBaliza.coloresDeBalizaCambiados())
+    }
+
+    test "esta parte es el super() de Nave prepararViaje() : combustible" {
+    assert.equals(32000, naveBaliza.combustible())
+    }
+    test "esta parte es el super() de Nave prepararViaje() : velocidad"{
+    assert.equals(6000, naveBaliza.velocidad())
+    }
+    test "prepararViaje()-->colorbaliza= verde" {
+    assert.equals("verde", naveBaliza.baliza())
+    }
+    
+    test "prepararViaje(), cambia el color a verde y suma el color verde a la lista de colores" {
+    assert.equals(["rojo", "verde"], naveBaliza.coloresDeBalizaCambiados())
+    }
+    test "prepararViaje(),se pone en paralelo al sol, por lo tanto la distancia es 0" {
+    assert.equals(0, naveBaliza.ponerseParaleloAlSol())
+    }
+    test "estaTranquila() true, la baliza es verde, osea no rojo" {
+    assert.that(naveBaliza.estaTranquila())
+    }
+
+}

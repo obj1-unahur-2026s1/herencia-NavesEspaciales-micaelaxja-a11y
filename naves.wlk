@@ -35,7 +35,7 @@ class Nave {
     return combustible
   }
   
-  method prepararViaje() {
+  method prepararViaje(){
     self.cargarCombustible(30000)
     self.acelerar(5000)
   } // cada nave sabe como debe hacerlo
@@ -48,13 +48,18 @@ class Nave {
 } //Distintos tipos de nave
 
 class NavesBaliza inherits Nave {
-  var baliza
+  var property  baliza
   const coloresDeBalizaCambiados = []
+
+  method coloresDeBalizaCambiados(){
+    return coloresDeBalizaCambiados
+  }
   
   method mostrarBaliza() = baliza
   
   method cambiarColorDeBaliza(colorNuevo) {
     baliza = colorNuevo
+    coloresDeBalizaCambiados.add(colorNuevo)
   }
   
   override method prepararViaje() {
@@ -147,7 +152,6 @@ class NavesDePasajeros inherits Nave {
   }
 
   }
-
 
 class NaveHospital inherits NavesDePasajeros {
   var tienePreparadosLosQuirofanos = true
