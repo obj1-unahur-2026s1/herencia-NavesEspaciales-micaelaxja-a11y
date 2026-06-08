@@ -18,6 +18,9 @@ describe "Test NAVES" {
         naveBaliza.cambiarColorDeBaliza("rojo")
         naveBaliza.baliza()
         naveBaliza.prepararViaje()
+        naveBaliza.recibirAmenaza()
+        naveBaliza.avisar()
+        
 
 
         
@@ -97,6 +100,24 @@ describe "Test NAVES" {
     }
     test "estaTranquila() true, la baliza es verde, osea no rojo" {
     assert.that(naveBaliza.estaTranquila())
+    }
+    test "recibirAmenaza() : distancia 10" {
+    assert.equals(10, naveBaliza.irHaciaElSol())
+    }
+    test "recibirAmenaza() : cambiarColorBaliza: rojo" {
+    assert.equals("rojo", naveBaliza.baliza()) 
+    }
+    test "escapar()" {
+    assert.equals(10, naveBaliza.irHaciaAlSol())
+    }
+    test "avisar()" {
+    assert.equals("rojo", naveBaliza.baliza())
+    }
+    test "estaDeRelajo() = combustible >= 4000 " {
+    assert.equals(32000,naveBaliza.combustible()) // analizar combustible y velocidad por separado.
+    }
+    test "estaDeRelajo() velocidad< 12000" {
+    assert.equals(6000,naveBaliza.velocidad())
     }
 
 }

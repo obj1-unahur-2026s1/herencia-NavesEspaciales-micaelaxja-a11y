@@ -84,7 +84,7 @@ class NavesBaliza inherits Nave {
   }
 
   override method estaDeRelajo(){
-    super()
+    super() &&
     coloresDeBalizaCambiados.size() == 1
 
   }
